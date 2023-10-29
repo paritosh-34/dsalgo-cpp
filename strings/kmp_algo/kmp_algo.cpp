@@ -12,10 +12,8 @@ vector<int> computeLPS(string s)
     {
         int maxLen = 0;
         for (int i=1;i<len;i++) {
-            int suffixIndex = len-i;
-
             string pprefix = s.substr(0, i);
-            string suffix = s.substr(suffixIndex, len - suffixIndex);
+            string suffix = s.substr(len - i, i);
 
             cout << "(" << i << " -> " << len << ")  pprefix: " << pprefix; 
             cout << "\t|| suffix: " << suffix << endl;
