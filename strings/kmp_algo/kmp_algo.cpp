@@ -29,10 +29,12 @@ vector<int> computeLPS_brute(string s)
         lps[len - 1] = maxLen;
     }
 
+    for (int i = 0; i < n; i++)
+        cout << s[i] << " ";
+    cout << endl;
+
     for (int ele : lps)
-    {
         cout << ele << " ";
-    }
     cout << endl;
 
     return lps;
