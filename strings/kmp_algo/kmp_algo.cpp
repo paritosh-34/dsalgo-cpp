@@ -62,10 +62,7 @@ vector<int> computeLPS_optimal(string s)
 int main()
 {
     string s = "ababc";
-
     vector<int> lps = computeLPS_brute(s);
-
-    cout << lps.size() << endl;
 
     for (int ele : lps)
     {
