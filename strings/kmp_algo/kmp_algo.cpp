@@ -47,7 +47,7 @@ vector<int> computeLPS_optimal(string s)
         }
         else if (j != 0)
         {
-            j = lps[j];
+            j = lps[j - 1];
         }
         else
         {
@@ -59,14 +59,51 @@ vector<int> computeLPS_optimal(string s)
     return lps;
 }
 
+int kmp_search(string haystack, string needle, vector<int> &lps)
+{
+    int i = 0;
+    int j = 0;
+    int n = haystack.length();
+    int m = needle.length();
+
+    while (j < m && i < n)
+    {
+        if (haystack[i] == needle[j])
+        {
+            i++, j++;
+        }
+        else if (j != 0)
+        {
+            int prevMatchIndex = j - 1;
+            int lastMatchPlusOne = lps[(j - 1) - 1 + 1];
+            j = lps[j - 1];
+        }
+        else
+        {
+            i++;
+        }
+    }
+
+    if (j == m)
+        return i;
+    return -1;
+}
+
 int main()
 {
-    string s = "ababc";
-    vector<int> lps = computeLPS_brute(s);
+    string needle = "ababc";
+    string haystack = "ababcabcabababd";
 
-    for (int ele : lps)
+    vector<int> lps = computeLPS_optimal(needle);
+    int foundIndex = kmp_search(haystack, needle, lps);
+
+    if (foundIndex != -1)
     {
-        cout << ele << " ";
+        cout << "pattern found at index: " << foundIndex << endl;
+    }
+    else
+    {
+        cout << "pattern not found" << endl;
     }
 
     return 0;
