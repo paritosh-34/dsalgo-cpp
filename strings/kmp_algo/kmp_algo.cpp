@@ -8,7 +8,7 @@ vector<int> computeLPS_brute(string s)
     int n = s.length();
     vector<int> lps(n, 0);
 
-    for (int len = 1; len < n; len++)
+    for (int len = 1; len <= n; len++)
     {
         int maxLen = 0;
         for (int i = 1; i < len; i++)
@@ -28,6 +28,12 @@ vector<int> computeLPS_brute(string s)
 
         lps[len - 1] = maxLen;
     }
+
+    for (int ele : lps)
+    {
+        cout << ele << " ";
+    }
+    cout << endl;
 
     return lps;
 }
@@ -94,7 +100,7 @@ int main()
     string needle = "ababc";
     string haystack = "ababcabcabababd";
 
-    vector<int> lps = computeLPS_optimal(needle);
+    vector<int> lps = computeLPS_brute(needle);
     int foundIndex = kmp_search(haystack, needle, lps);
 
     if (foundIndex != -1)
